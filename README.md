@@ -43,7 +43,7 @@ my_weird_shape = [
   (10, 20)
 ]
 
-shape = [np.array(p) for p in my_weird_shape] # make sure you end up with a list of numpy tuples, not python ones
+shape = [np.array(p) for p in my_weird_shape] # make sure you end up with a list of numpy arrays, not python ones
 ```
 Or, if you'd like to use ReX in your own script:
 ```py
@@ -55,6 +55,7 @@ shape = ... # again, in numpy arrays
 print(rex(shape)) # normal version
 print(vrex(shape)) # visual version
 ```
+`rex` also takes a verbosity boolean after `shape`; if you don't want it to print (which it will do by default), use `rex(shape, False)`.
 
 ## Examples
 Testing this on a hexagon formed with:
