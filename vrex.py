@@ -139,10 +139,9 @@ def attempt(ai: int, polygon: list):
     
     return (X if useX else None, Y if useY else None, A, dropped)
 
-def rex(visualize=False):
+def rex(_shape, visualize=True):
     total = 0
     target = 0
-    _shape = shape
     
     if visualize:
         fig, ax = plt.subplots(figsize=(12, 10))
@@ -270,4 +269,5 @@ def rex(visualize=False):
     return total
 
 
-print(rex(visualize=True))
+print(f"Final area: {rex(shape, visualize=True)}")
+
