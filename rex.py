@@ -144,19 +144,19 @@ def attempt(ai: int, polygon: list):
     
     return (X if useX else None, Y if useY else None, A, dropped)
 
-def rex(_shape):
+def rex(_shape, verbose=True):
     total = 0
     target = 0
     for i in range(max_iterations):
         if len(_shape) < 3:
-            print ("Final shape has less than 3 points.")
+            if (verbose): print("Final shape has less than 3 points.")
             break
         elif len(_shape) == 3:
-            print ("Final shape is a triangle, adding its area.")
+            if (verbose): print ("Final shape is a triangle, adding its area.")
             total += area(_shape[0], _shape[1], _shape[2])
             break
         elif len(_shape) == 4 or len(_shape) == 5: 
-            print (f"Final shape has {len(_shape)} points, adding its area.")
+            if (verbose): print (f"Final shape has {len(_shape)} points, adding its area.")
             shoelace_area = 0.0
             n = len(_shape)
             for j in range(n):
@@ -169,17 +169,17 @@ def rex(_shape):
         try: X, Y, A, dropped = attempt(target, _shape)
         except Exception as e:
             target = index(target + 1, _shape)
-            print(f"Iteration {i + 1}: {e}, moving to next target ({target - 1} -> {target}).")
+            if (verbose): print(f"Iteration {i + 1}: {e}, moving to next target ({target - 1} -> {target}).")
             continue
         
         X_exists = X is not None
         Y_exists = Y is not None
         n_dropped = len(dropped) - (1 if X_exists else 0) - (1 if Y_exists else 0)
-        print(f"Iteration {i + 1}: target={target}, len={len(_shape)} - {n_dropped}, X={X_exists}, Y={Y_exists}, A={A:.2f}, total={total:.2f} -> {total + A:.2f}")
+        if (verbose): print(f"Iteration {i + 1}: target={target}, len={len(_shape)} - {n_dropped}, X={X_exists}, Y={Y_exists}, A={A:.2f}, total={total:.2f} -> {total + A:.2f}")
 
         if A < epsilon:
             target = index(target + 1, _shape)
-            print(f"Iteration {i + 1}: Area below epsilon, moving to next target ({target - 1} -> {target}).")
+            if (verbose): print(f"Iteration {i + 1}: Area below epsilon, moving to next target ({target - 1} -> {target}).")
             continue
         
         new_shape = []
@@ -209,4 +209,5 @@ def rex(_shape):
 
 
 print(f"Final area: {rex(shape)}")
+
 
