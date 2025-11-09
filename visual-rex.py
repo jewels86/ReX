@@ -3,6 +3,8 @@ from shapely.geometry import Point, Polygon
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon as MplPolygon
 
+# this is the visual version- at the end you'll get a nice graph of the exploration over time
+
 epsilon = 1e-15
 
 pentagon = [
@@ -60,7 +62,7 @@ self_intersecting_star = [
     (0, 3)       # back to top (closes it)
 ]
 
-shape = [np.array(p) for p in cafeteria]
+shape = [np.array(p) for p in cafeteria] # again swap this out with whatever you want
 max_iterations = len(shape) * 5
 index = lambda i, p: i % len(p)
 get = lambda i, arr: np.array(arr[index(i, arr)])
@@ -266,5 +268,6 @@ def rex(visualize=False):
         plt.show()
 
     return total
+
 
 print(rex(visualize=True))
