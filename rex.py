@@ -1,8 +1,11 @@
 import numpy as np
 from shapely.geometry import Point, Polygon
 
-epsilon = 1e-15
+epsilon = 1e-15 # you can make this smaller if your shape is tiny
 
+# Below are some example shapes
+
+# should have an area of around 1.72 (unit pentagon)
 pentagon = [
     (0, -0.851),
     (0.809, -0.263),
@@ -10,6 +13,8 @@ pentagon = [
     (-0.5, 0.688),
     (-0.809, -0.263),
 ]
+
+# should have an area of 14- its a 2x4 + 2x3
 l_shape = [
     (0, 0),
     (2, 0),
@@ -19,6 +24,7 @@ l_shape = [
     (0, 5)
 ]
 
+# should have an area of 1
 s = np.sqrt(2 / (3 * np.sqrt(3)))
 hexagon = [
     (s, 0),
@@ -28,6 +34,9 @@ hexagon = [
     (-s/2, -s*np.sqrt(3)/2),
     (s/2, -s*np.sqrt(3)/2)
 ]
+
+# this was for the original assigment :) 
+# shoelace confirmed the area to be around 5859
 cafeteria = [
     (0,                 0            ),
     (-5/6,              59  + (3/4)),
@@ -44,11 +53,9 @@ cafeteria = [
     (28     + (5/12),   14      + (8/12)),
     (14,                0)
     
-]
+] 
 
-np.seterr(all='raise')
-
-# Self-intersecting star (pentagram style - edges cross)
+# self-intersecting star (pentagram style - edges cross)
 self_intersecting_star = [
     (0, 3),      # top
     (2.5, -1),   # bottom right
@@ -58,7 +65,9 @@ self_intersecting_star = [
     (0, 3)       # back to top (closes it)
 ]
 
-shape = [np.array(p) for p in self_intersecting_star]
+np.seterr(all='raise')
+
+shape = [np.array(p) for p in hexagon] # put whatever shape you want in here 
 max_iterations = len(shape) * 5
 index = lambda i, p: i % len(p)
 get = lambda i, arr: np.array(arr[index(i, arr)])
@@ -99,7 +108,7 @@ def attempt(ai: int, polygon: list):
     s = f[1] - b[1]
     X_x = a[0] + (p * ((u*s) - (r*v))) / ((p*s) - (q*r))
     X_y = a[1] + (q * ((u*s) - (r*v))) / ((p*s) - (q*r))
-    X = np.array((X_x, X_y))
+    X = np.array((X_x, X_y)) # intersection of ad bf
 
     u = c[0] - a[0]
     p = e[0] - a[0]
@@ -109,7 +118,7 @@ def attempt(ai: int, polygon: list):
     s = g[1] - c[1]
     Y_x = a[0] + (p * ((u*s) - (r*v))) / ((p*s) - (q*r))
     Y_y = a[1] + (q * ((u*s) - (r*v))) / ((p*s) - (q*r))
-    Y = np.array((Y_x, Y_y))
+    Y = np.array((Y_x, Y_y)) # intersection of ae cg
 
     A = 0
 
@@ -199,4 +208,5 @@ def rex():
 
     return total
 
-print(rex())
+
+print(f"Final area: {rex()}")
