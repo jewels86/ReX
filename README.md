@@ -29,7 +29,7 @@ I came up with this a few days later because I really didn't want to divide the 
 ### Why not just use Shoelace?
 At the time, I didn't realize it worked on all polygons, no matter how weird; I just thought it was for more normal shapes. 
 So I derived an entirely new algorithm for finding the area of polygons twice before finding out it actually does work on everything.
-It was fun to make, but you should absolutely use shoelace. Unless you feel like you want a cool visualization. Then use this :)
+This was fun to make, but you should absolutely use shoelace. Unless you feel like you want a cool visualization. Then use this :)
 
 ## Usage
 Replace the `shape` variable at the top with whatever your shape is:
