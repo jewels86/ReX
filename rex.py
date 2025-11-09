@@ -144,10 +144,9 @@ def attempt(ai: int, polygon: list):
     
     return (X if useX else None, Y if useY else None, A, dropped)
 
-def rex():
+def rex(_shape):
     total = 0
     target = 0
-    _shape = shape
     for i in range(max_iterations):
         if len(_shape) < 3:
             print ("Final shape has less than 3 points.")
@@ -209,4 +208,5 @@ def rex():
     return total
 
 
-print(f"Final area: {rex()}")
+print(f"Final area: {rex(shape)}")
+
