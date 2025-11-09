@@ -32,7 +32,7 @@ So I derived an entirely new algorithm for finding the area of polygons twice be
 It was fun to make, but you should absolutely use shoelace. Unless you feel like you want a cool visualization. Then use this :)
 
 ## Usage
-Replace the $shape$ variable at the top with whatever your shape is:
+Replace the `shape` variable at the top with whatever your shape is:
 ```py
 my_weird_shape = [
   (100, 2787),
@@ -44,6 +44,16 @@ my_weird_shape = [
 ]
 
 shape = [np.array(p) for p in my_weird_shape] # make sure you end up with a list of numpy tuples, not python ones
+```
+Or, if you'd like to use ReX in your own script:
+```py
+from rex import rex
+from vrex import vrex
+
+shape = ... # again, in numpy arrays
+
+print(rex(shape)) # normal version
+print(vrex(shape)) # visual version
 ```
 
 ## Examples
@@ -60,7 +70,9 @@ hexagon = [
 ]
 ```
 We should get an area of 1, which ReX correctly found:
+
 <img width="1126" height="989" alt="image" src="https://github.com/user-attachments/assets/3afbf5dd-abb9-47a0-8337-ef8e74604ba7" />
+
 ```
 Iteration 1: target=0, len=6 - 2, X=True, Y=True, A=0.56, total=0.00 -> 0.56
 Final shape has 4 points, adding its area.
@@ -68,7 +80,9 @@ Final shape has 4 points, adding its area.
 ```
 
 Or, with the cafeteria:
+
 <img width="625" height="975" alt="image" src="https://github.com/user-attachments/assets/cceb6332-bdb7-4897-8e76-47a10b343c7b" />
+
 ```
 Iteration 1: target=0, len=14 - 0, X=False, Y=False, A=0.00, total=0.00 -> 0.00
 Iteration 1: Area below epsilon, moving to next target (0 -> 1).
@@ -86,6 +100,7 @@ Iteration 10: target=3, len=6 - 1, X=True, Y=False, A=411.09, total=5239.80 -> 5
 Final shape has 5 points, adding its area.
 5859.536805555559
 ```
+
 ## Limitations
 If your polygon is self-intersecting, you'll get a result but I'm not sure exactly what it represents. Take it with a grain of salt.
 
